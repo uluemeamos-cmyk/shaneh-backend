@@ -162,6 +162,135 @@ router.post("/car-rental", async (req, res) => {
   }
 });
 
+// POST /api/checkout/hotel
+// body: { hotelId, nights, customerName, customerEmail, customerPhone, checkInDate }
+router.post("/hotel", async (req, res) => {
+  try {
+    const { hotelId, nights = 1, customerName, customerEmail, customerPhone, checkInDate } = req.body;
+
+    if (!hotelId || !customerName || !customerEmail) {
+      return res.status(400).json({ error: "hotelId, customerName and customerEmail are required" });
+    }
+
+    const hotel = db.getHotelById(hotelId);
+    if (!hotel) return res.status(404).json({ error: "Hotel not found" });
+
+    const nightCount = Math.max(1, parseInt(nights, 10) || 1);
+    const amountTotal = hotel.pricePerNight * nightCount;
+    const bookingId = uuidv4();
+
+    db.addBooking({
+      id: bookingId,
+      kind: "hotel",
+      itemId: hotel.id,
+      itemTitle: `${hotel.name} — ${hotel.location}`,
+      nights: nightCount,
+      checkInDate: checkInDate || null,
+      customerName,
+      customerEmail,
+      customerPhone: customerPhone || null,
+      amountTotal,
+      currency: hotel.currency,
+      status: "pending",
+      stripeSessionId: null,
+      createdAt: new Date().toISOString(),
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      customer_email: customerEmail,
+      line_items: [
+        {
+          price_data: {
+            currency: hotel.currency,
+            product_data: {
+              name: hotel.name,
+              description: `${nightCount} night(s) — ${hotel.location}`,
+            },
+            unit_amount: hotel.pricePerNight,
+          },
+          quantity: nightCount,
+        },
+      ],
+      success_url: `${FRONTEND_URL}/booking-success.html?booking_id=${bookingId}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${FRONTEND_URL}/booking-cancelled.html?booking_id=${bookingId}`,
+      metadata: { bookingId, kind: "hotel", hotelId: hotel.id },
+    });
+
+    db.updateBooking(bookingId, { stripeSessionId: session.id });
+
+    res.json({ url: session.url, bookingId });
+  } catch (err) {
+    console.error("Hotel checkout error:", err);
+    res.status(500).json({ error: "Unable to start checkout" });
+  }
+});
+
+// POST /api/checkout/airport-pickup
+// body: { pickupId, customerName, customerEmail, customerPhone, arrivalDate, flightNumber }
+router.post("/airport-pickup", async (req, res) => {
+  try {
+    const { pickupId, customerName, customerEmail, customerPhone, arrivalDate, flightNumber } = req.body;
+
+    if (!pickupId || !customerName || !customerEmail) {
+      return res.status(400).json({ error: "pickupId, customerName and customerEmail are required" });
+    }
+
+    const pickup = db.getAirportPickupById(pickupId);
+    if (!pickup) return res.status(404).json({ error: "Transfer not found" });
+
+    const amountTotal = pickup.price;
+    const bookingId = uuidv4();
+
+    db.addBooking({
+      id: bookingId,
+      kind: "airport-pickup",
+      itemId: pickup.id,
+      itemTitle: pickup.name,
+      arrivalDate: arrivalDate || null,
+      flightNumber: flightNumber || null,
+      customerName,
+      customerEmail,
+      customerPhone: customerPhone || null,
+      amountTotal,
+      currency: pickup.currency,
+      status: "pending",
+      stripeSessionId: null,
+      createdAt: new Date().toISOString(),
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      payment_method_types: ["card"],
+      customer_email: customerEmail,
+      line_items: [
+        {
+          price_data: {
+            currency: pickup.currency,
+            product_data: {
+              name: pickup.name,
+              description: "Airport transfer",
+            },
+            unit_amount: pickup.price,
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: `${FRONTEND_URL}/booking-success.html?booking_id=${bookingId}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${FRONTEND_URL}/booking-cancelled.html?booking_id=${bookingId}`,
+      metadata: { bookingId, kind: "airport-pickup", pickupId: pickup.id },
+    });
+
+    db.updateBooking(bookingId, { stripeSessionId: session.id });
+
+    res.json({ url: session.url, bookingId });
+  } catch (err) {
+    console.error("Airport pickup checkout error:", err);
+    res.status(500).json({ error: "Unable to start checkout" });
+  }
+});
+
 // GET /api/checkout/booking/:id — poll booking status from the success page
 router.get("/booking/:id", (req, res) => {
   const booking = db.getBooking(req.params.id);
@@ -170,3 +299,4 @@ router.get("/booking/:id", (req, res) => {
 });
 
 module.exports = router;
+
