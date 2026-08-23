@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const tripsRouter = require("./routes/trips");
 const carRentalsRouter = require("./routes/carRentals");
+const hotelsRouter = require("./routes/hotels");
+const airportPickupsRouter = require("./routes/airportPickups");
 const paymentsRouter = require("./routes/payments");
 const webhookRouter = require("./routes/webhook");
 const adminRouter = require("./routes/admin");
@@ -25,6 +27,8 @@ app.get("/api/health", (req, res) => res.json({ ok: true }));
 
 app.use("/api/trips", tripsRouter);
 app.use("/api/car-rentals", carRentalsRouter);
+app.use("/api/hotels", hotelsRouter);
+app.use("/api/airport-pickups", airportPickupsRouter);
 app.use("/api/checkout", paymentsRouter);
 app.use("/api/admin", adminRouter);
 
@@ -38,3 +42,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Shaneh backend listening on port ${PORT}`);
 });
+
