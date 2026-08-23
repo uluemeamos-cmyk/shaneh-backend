@@ -1,0 +1,46 @@
+[
+  {
+    "id": "trip-cape-town",
+    "title": "Cape Town: Discover South Africa's Jewel",
+    "type": "Site Seeing",
+    "description": "Uncover the beauty of Cape Town, from iconic landmarks to diverse cuisine. Scenic drives, table mountain, and vibrant local culture.",
+    "image": "https://images.unsplash.com/photo-1580060839134-75a50c4f6088?w=800&q=80",
+    "durationDays": 7,
+    "pricePerAdult": 189900,
+    "pricePerChild": 129900,
+    "currency": "usd"
+  },
+  {
+    "id": "trip-wine-tasting",
+    "title": "Wine Tasting: Explore the Finest Vintages",
+    "type": "Site Seeing",
+    "description": "Experience the world's finest wines in breathtaking settings, from Tuscan vineyards to Napa Valley estates.",
+    "image": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80",
+    "durationDays": 4,
+    "pricePerAdult": 149900,
+    "pricePerChild": 99900,
+    "currency": "usd"
+  },
+  {
+    "id": "trip-extreme",
+    "title": "Extreme Experiences: Thrills Await",
+    "type": "Adventure",
+    "description": "For adrenaline junkies: skydiving, bungee jumping, and heart-pounding excitement across handpicked destinations.",
+    "image": "https://images.unsplash.com/photo-1600965962102-9d260a71890d?w=800&q=80",
+    "durationDays": 5,
+    "pricePerAdult": 219900,
+    "pricePerChild": 159900,
+    "currency": "usd"
+  },
+  {
+    "id": "trip-wildlife-safari",
+    "title": "Wild Life Safari: Into the Wild",
+    "type": "Wild Life",
+    "description": "Get close to nature with guided safari tours through some of the world's richest wildlife reserves.",
+    "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
+    "durationDays": 6,
+    "pricePerAdult": 249900,
+    "pricePerChild": 179900,
+    "currency": "usd"
+  }
+]

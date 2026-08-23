@@ -1,0 +1,38 @@
+[
+  {
+    "id": "car-economy",
+    "name": "Economy - Toyota Corolla or similar",
+    "description": "Fuel-efficient and easy to park. Great for city trips.",
+    "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80",
+    "seats": 4,
+    "pricePerDay": 4900,
+    "currency": "usd"
+  },
+  {
+    "id": "car-suv",
+    "name": "SUV - Toyota RAV4 or similar",
+    "description": "Spacious and comfortable, ideal for families and longer road trips.",
+    "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
+    "seats": 5,
+    "pricePerDay": 8900,
+    "currency": "usd"
+  },
+  {
+    "id": "car-luxury",
+    "name": "Luxury - Mercedes E-Class or similar",
+    "description": "Premium comfort and style for a no-limit experience.",
+    "image": "https://images.unsplash.com/photo-1563720223185-11003d516935?w=800&q=80",
+    "seats": 5,
+    "pricePerDay": 15900,
+    "currency": "usd"
+  },
+  {
+    "id": "car-van",
+    "name": "Van - 12-Seater",
+    "description": "Perfect for group trips and larger travel parties.",
+    "image": "https://images.unsplash.com/photo-1609520505218-7421df709ff2?w=800&q=80",
+    "seats": 12,
+    "pricePerDay": 12900,
+    "currency": "usd"
+  }
+]
