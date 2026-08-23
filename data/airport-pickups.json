@@ -1,0 +1,29 @@
+[
+  {
+    "id": "pickup-sedan",
+    "name": "Sedan Transfer",
+    "description": "Private sedan, up to 3 passengers, meet-and-greet at arrivals.",
+    "image": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
+    "seats": 3,
+    "price": 5900,
+    "currency": "usd"
+  },
+  {
+    "id": "pickup-suv",
+    "name": "SUV Transfer",
+    "description": "Spacious SUV for families or extra luggage, up to 5 passengers.",
+    "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
+    "seats": 5,
+    "price": 8900,
+    "currency": "usd"
+  },
+  {
+    "id": "pickup-van",
+    "name": "Group Van Transfer",
+    "description": "12-seater van, ideal for groups arriving together.",
+    "image": "https://images.unsplash.com/photo-1609520505218-7421df709ff2?w=800&q=80",
+    "seats": 12,
+    "price": 14900,
+    "currency": "usd"
+  }
+]
