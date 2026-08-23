@@ -1,0 +1,42 @@
+[
+  {
+    "id": "hotel-cape-grace",
+    "name": "Waterfront Boutique Hotel",
+    "location": "Cape Town, South Africa",
+    "description": "Elegant harbourside hotel with mountain views and a spa.",
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+    "rating": 4.8,
+    "pricePerNight": 24900,
+    "currency": "usd"
+  },
+  {
+    "id": "hotel-vineyard-lodge",
+    "name": "Vineyard Estate Lodge",
+    "location": "Stellenbosch, South Africa",
+    "description": "Wine-country retreat surrounded by rolling vineyards.",
+    "image": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
+    "rating": 4.7,
+    "pricePerNight": 19900,
+    "currency": "usd"
+  },
+  {
+    "id": "hotel-safari-camp",
+    "name": "Riverside Safari Camp",
+    "location": "Kruger Region, South Africa",
+    "description": "Tented luxury camp with private game-viewing decks.",
+    "image": "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
+    "rating": 4.9,
+    "pricePerNight": 34900,
+    "currency": "usd"
+  },
+  {
+    "id": "hotel-city-suites",
+    "name": "Downtown City Suites",
+    "location": "Johannesburg, South Africa",
+    "description": "Modern suites in the city centre, close to business and nightlife.",
+    "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+    "rating": 4.4,
+    "pricePerNight": 14900,
+    "currency": "usd"
+  }
+]
