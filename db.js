@@ -12,6 +12,8 @@ const path = require("path");
 const DATA_DIR = path.join(__dirname, "data");
 const TRIPS_FILE = path.join(DATA_DIR, "trips.json");
 const CARS_FILE = path.join(DATA_DIR, "car-rentals.json");
+const HOTELS_FILE = path.join(DATA_DIR, "hotels.json");
+const PICKUPS_FILE = path.join(DATA_DIR, "airport-pickups.json");
 const BOOKINGS_FILE = path.join(DATA_DIR, "bookings.json");
 
 function readJSON(file) {
@@ -36,6 +38,22 @@ function getCarRentals() {
 
 function getCarRentalById(id) {
   return getCarRentals().find((c) => c.id === id);
+}
+
+function getHotels() {
+  return readJSON(HOTELS_FILE);
+}
+
+function getHotelById(id) {
+  return getHotels().find((h) => h.id === id);
+}
+
+function getAirportPickups() {
+  return readJSON(PICKUPS_FILE);
+}
+
+function getAirportPickupById(id) {
+  return getAirportPickups().find((p) => p.id === id);
 }
 
 function getBookings() {
@@ -67,6 +85,10 @@ module.exports = {
   getTripById,
   getCarRentals,
   getCarRentalById,
+  getHotels,
+  getHotelById,
+  getAirportPickups,
+  getAirportPickupById,
   getBookings,
   getBooking,
   addBooking,
